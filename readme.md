@@ -4,7 +4,7 @@ for the publication
 
 ### Identification and validation of novel snoRNA-based biomarkers for clear cell renal cell carcinoma from urine-derived extracellular vesicles
 
-Konrad Grützmann, Karsten Salomo, Kati Erdmann, Alexander Krüger, Andrea Lohse-Fischer, Michael Seifert, Gustavo Baretton, Daniela Aust, Evelin Schröck, Susanne Füssel
+Konrad Grützmann, Karsten Salomo, Alexander Krüger, Andrea Lohse-Fischer, Kati Erdmann, Michael Seifert, Gustavo Baretton, Daniela Aust, Doreen William, Evelin Schröck, Christian Thomas, Susanne Füssel
 
 
 ## directory structure
@@ -13,6 +13,7 @@ Konrad Grützmann, Karsten Salomo, Kati Erdmann, Alexander Krüger, Andrea Lohse
       - gene annotations (Homo_sapiens.GRCh37.75-chrRename-noHaplo.RData)
       - chromosome lengths (hg19.chrom.sizes)
       - sample annotation (annotation-63.csv|xls, annotation-78.csv|xls)
+		- patient obesity and hypertension risk factors (annotation-obesity-hypertension.xlsx)
       - fungi-base-urls.txt for fastq_screen
       - further gene annotation of the signif regions (signif-regions-hand-curated-annotation.txt)
       - exon intron structure of SNHG1 for plot (UCSC-genes-hg19-SNHG1-structure.gtf)
@@ -30,6 +31,7 @@ Konrad Grützmann, Karsten Salomo, Kati Erdmann, Alexander Krüger, Andrea Lohse
     - scripts
        - all R scripts and jupyter notebooks of the analysis explained below 
 
+    - download all these data from zenodo: https://doi.org/10.5281/zenodo.10654767
 
 ## Setting up conda environments
 
@@ -274,12 +276,18 @@ Konrad Grützmann, Karsten Salomo, Kati Erdmann, Alexander Krüger, Andrea Lohse
     - note, all coordinates are based on hg19/GRCh37 
 
   
-### PCR
+### PCR validation and diagnostic models
 
 - scripts/evaluate-PCR-predictions.r.ipynb
     - evaluates the qPCR validation measurements
     - produces
-        - Table 4 with classification measurements (sensitivity, specificity, accuracy, ...)
+        - Table 4 with classification measurements (sensitivity, specificity, accuracy, ...) with and without adjustment for obesity and hypertension
         - Figure 5 with ROC curves
-        - Table S5 that shows the performance when using 2 genes for classification
+        - Table S5 that shows the performance when using 2-4 genes for classification and with or without adjustment for obesity and hypertension
+
+### Crossvalidation of the diagnostic models
+
+- scripts/model-crossvalidation.r.ipynb
+    - does the fivefold repeated crossvalidation of the models with 1, 2, 3, 4 genes
+    - produces Suppl. Table S6 with the mean and standard deviations of the model metrics
 
